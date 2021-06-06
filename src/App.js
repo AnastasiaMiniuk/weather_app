@@ -1,24 +1,96 @@
 import React from "react";
-import Info from "./Components/info";
-import Form from "./Components/form";
-import Weather from "./Components/weather";
-
-const API_KEY = "b47c910b9d7c3d47c96cdb71cc59992a";
+import DisplayWeather from "./Components/DisplayWeather.js";
+import "fontsource-roboto";
+import Axios from "axios";
+import "./App.css";
+import Navbar from "./Components/Navbar.js";
+// import { makeStyles } from "@material-ui/core/styles";
 
 class App extends React.Component {
-  gettingWeather = async () => {
-    const api_url = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=Kiev,ua&appid=${API_KEY}&units=metric`
-    );
-    const data = await api_url.json();
-    console.log(data);
+  //state
+  state = {
+    coords: {
+      latitude: 45,
+      longitude: 60,
+    },
+    data: {},
+    inputData: "",
   };
+  componentDidMount() {
+    //get device location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        let newCoords = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        };
+        this.setState({ coords: newCoords });
+
+        //Api call
+        Axios.get(
+          `http://api.weatherstack.com/current?access_key=d718dd3ef5874cbaf95760bb48c142aa&query=${this.state.coords.latitude},${this.state.coords.longitude}`
+        ).then((res) => {
+          let weatherData = {
+            location: res.data.location.name,
+            temperature: res.data.current.temperature,
+            description: res.data.current.weather_descriptions[0],
+            region: res.data.location.region,
+            country: res.data.location.country,
+            wind_speed: res.data.current.wind_speed,
+            pressure: res.data.current.pressure,
+            precip: res.data.current.precip,
+            humidity: res.data.current.humidity,
+            img: res.data.current.weather_icons,
+            localtime: res.data.location.localtime,
+            utc_offset: res.data.location.utc_offset,
+          };
+          this.setState({ data: weatherData });
+        });
+      });
+    } else {
+      console.log("not supported");
+    }
+  }
+
+  //track the input field
+  change = (value) => {
+    this.setState({ inputData: value });
+  };
+  changeWeather = (event) => {
+    event.preventDefault(); //убрать дефолтную перезагрузку страницы после submita какой-нибудь текста в form
+
+    //Api call
+    Axios.get(
+      `http://api.weatherstack.com/current?access_key=d718dd3ef5874cbaf95760bb48c142aa&query=${this.state.inputData}`
+    ).then((res) => {
+      let weatherData = {
+        location: res.data.location.name,
+        temperature: res.data.current.temperature,
+        description: res.data.current.weather_descriptions[0],
+        region: res.data.location.region,
+        country: res.data.location.country,
+        wind_speed: res.data.current.wind_speed,
+        pressure: res.data.current.pressure,
+        precip: res.data.current.precip,
+        humidity: res.data.current.humidity,
+        img: res.data.current.weather_icons,
+        localtime: res.data.location.localtime,
+        utc_offset: res.data.location.utc_offset,
+      };
+      this.setState({ data: weatherData });
+    });
+  };
+
   render() {
     return (
       <div>
-        <Info />
-        <Form />
-        <Weather />
+        <div className="container">
+          <Navbar
+            changeWeather={this.changeWeather}
+            changeRegion={this.change}
+          />
+          <DisplayWeather weatherData={this.state.data} />
+        </div>
       </div>
     );
   }
