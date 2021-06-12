@@ -25,7 +25,7 @@ class App extends React.Component {
         };
         this.setState({ coords: newCoords });
 
-        //Api call
+        //Api call with query of geolocation(latitude and longitude)
         Axios.get(
           `http://api.weatherstack.com/current?access_key=cb721bacf1044974f70324bb53816741&query=${this.state.coords.latitude},${this.state.coords.longitude}`
         ).then((res) => {
@@ -55,9 +55,9 @@ class App extends React.Component {
     this.setState({ inputData: value });
   };
   changeWeather = (event) => {
-    event.preventDefault(); //убрать дефолтную перезагрузку страницы после submita какой-нибудь текста в form
+    event.preventDefault(); //убрать дефолтную перезагрузку страницы после submita  текста в form
 
-    //Api call
+    //Api call with query of dynamic data- inputData( which is typed in form)
     Axios.get(
       `http://api.weatherstack.com/current?access_key=cb721bacf1044974f70324bb53816741&query=${this.state.inputData}`
     ).then((res) => {
