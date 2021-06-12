@@ -19,11 +19,13 @@ export default function Navbar(props) {
           </form>
         </div>
 
-        <div>
+        {/* button is still in progress */}
+
+        {/* <div>
           <Button className="weatherByGeo" variant="contained">
             Weather by my geolocation
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

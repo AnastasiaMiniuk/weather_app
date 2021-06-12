@@ -19,20 +19,21 @@ export default function DisplayWeather(props) {
     <div className="user-weather">
       <div className="row row_basic">
         <div className="col-md-6 weather-temp">
-          <h1>
-            {temperature}
-            <sup>o</sup>C , {description}
-          </h1>
-          <h4>{location}</h4>
+          <div>
+            <h1>
+              {temperature}
+              <sup>o</sup>C , {description}
+            </h1>
+          </div>
+          <h2>{location}</h2>
           <p>{country}</p>
         </div>
-        <div className="col-md-4 img_and_date">
-          <div className="col-md-3">
-            <img className="mainImg" src={img} alt="weather-img" />
-          </div>
-          <div className="col-md-3">
-            <h2>{localtime}</h2>
-          </div>
+
+        <div className="col-md-2">
+          <img className="mainImg" src={img} alt="weather-img" />
+        </div>
+        <div className="col-md-3">
+          <h2>{localtime}</h2>
         </div>
       </div>
 
