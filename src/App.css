@@ -1,1 +1,102 @@
- 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Nunito;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  color: #fff;
+}
+
+.App {
+  height: 100vh;
+  width: 100%;
+}
+.row {
+  align-items: center;
+}
+.title {
+  padding: 20px 0 40px 0;
+  color: #fff;
+  margin-right: 30px;
+}
+
+.weather-temp {
+  padding-bottom: 40px;
+  padding-left: 60px;
+}
+
+.weather-temp h1,
+.weather-temp h2,
+.weather-temp p {
+  padding-bottom: 10px;
+}
+.weather-temp h1 {
+  font-size: 38px;
+}
+.weather-temp h2 {
+  font-size: 30px;
+}
+.weather-temp p {
+  font-size: 28px;
+}
+.weather-info p,
+.weather-info h2 {
+  text-align: center;
+}
+.weather-info p {
+  font-size: 26px;
+}
+.user-weather {
+  color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #fff;
+}
+
+.navbar {
+  background-color: #ddd;
+}
+
+.region {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.regionInput {
+  color: #fff;
+  font-size: 26px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #fff;
+  padding: 0 50px 0 0px;
+  outline: none;
+}
+
+.regionInput::placeholder {
+  color: #fff;
+  font-family: Nunito;
+  font-weight: 500;
+  font-size: 17px;
+  padding-left: 0;
+}
+.col-md-6 {
+  display: flex;
+  flex-direction: column;
+}
+.img_and_date {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 60px;
+}
+.row_basic {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.mainImg {
+  width: 70%;
+}
