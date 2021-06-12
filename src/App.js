@@ -4,6 +4,7 @@ import "fontsource-roboto";
 import Axios from "axios";
 import "./App.css";
 import Navbar from "./Components/Navbar.js";
+
 // import { makeStyles } from "@material-ui/core/styles";
 
 class App extends React.Component {
@@ -34,7 +35,6 @@ class App extends React.Component {
             location: res.data.location.name,
             temperature: res.data.current.temperature,
             description: res.data.current.weather_descriptions[0],
-            region: res.data.location.region,
             country: res.data.location.country,
             wind_speed: res.data.current.wind_speed,
             pressure: res.data.current.pressure,
@@ -67,7 +67,6 @@ class App extends React.Component {
         location: res.data.location.name,
         temperature: res.data.current.temperature,
         description: res.data.current.weather_descriptions[0],
-        region: res.data.location.region,
         country: res.data.location.country,
         wind_speed: res.data.current.wind_speed,
         pressure: res.data.current.pressure,

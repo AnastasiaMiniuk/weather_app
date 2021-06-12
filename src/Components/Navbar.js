@@ -1,5 +1,7 @@
 import React from "react";
-// import Input from "@material-ui/core/Input";
+import Button from "@material-ui/core/Button";
+import Input from "@material-ui/core/Input";
+
 export default function Navbar(props) {
   return (
     <div className="row">
@@ -7,13 +9,21 @@ export default function Navbar(props) {
         <h1 className="title">Weather-app</h1>
       </div>
       <div className="col-md-6">
-        <form className="region" onSubmit={(e) => props.changeWeather(e)}>
-          <input
-            className="regionInput"
-            placeholder="Enter Location"
-            onChange={(e) => props.changeRegion(e.target.value)}
-          />
-        </form>
+        <div>
+          <form className="region" onSubmit={(e) => props.changeWeather(e)}>
+            <input
+              className="regionInput"
+              placeholder="Enter Location"
+              onChange={(e) => props.changeRegion(e.target.value)}
+            />
+          </form>
+        </div>
+
+        <div>
+          <Button className="weatherByGeo" variant="contained">
+            Weather by my geolocation
+          </Button>
+        </div>
       </div>
     </div>
   );
